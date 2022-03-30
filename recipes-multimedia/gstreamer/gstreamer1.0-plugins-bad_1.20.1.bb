@@ -1,4 +1,5 @@
 require gstreamer1.0-plugins-common.inc
+require gstreamer1.0-plugins-license.inc
 
 DESCRIPTION = "'Bad' GStreamer plugins and helper libraries "
 HOMEPAGE = "https://gstreamer.freedesktop.org/"
@@ -11,11 +12,11 @@ SRC_URI = "https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad
            file://0004-opencv-resolve-missing-opencv-data-dir-in-yocto-buil.patch \
            file://0005-msdk-fix-includedir-path.patch \
            "
-SRC_URI[sha256sum] = "74e806bc5595b18c70e9ca93571e27e79dfb808e5d2e7967afa952b52e99c85f"
+SRC_URI[sha256sum] = "09d3c2cf5911f0bc7da6bf557a55251779243d3de216b6a26cc90c445b423848"
 
 S = "${WORKDIR}/gst-plugins-bad-${PV}"
 
-LICENSE = "GPLv2+ & LGPLv2+ & LGPLv2.1+"
+LICENSE = "LGPL-2.1-or-later & GPL-2.0-or-later"
 LIC_FILES_CHKSUM = "file://COPYING;md5=4fbd65380cdd255951079008b364516c"
 
 DEPENDS += "gstreamer1.0-plugins-base"
@@ -25,11 +26,12 @@ inherit gobject-introspection
 PACKAGECONFIG ??= " \
     ${GSTREAMER_ORC} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'bluez', '', d)} \
-    ${@bb.utils.filter('DISTRO_FEATURES', 'directfb vulkan', d)} \
+    ${@bb.utils.filter('DISTRO_FEATURES', 'directfb vulkan x11', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'gl', '', d)} \
-    bz2 closedcaption curl dash dtls hls openssl rsvg sbc smoothstreaming \
+    bz2 closedcaption curl dash dtls hls openssl sbc smoothstreaming \
     sndfile ttml uvch264 webp \
+    ${@bb.utils.contains('TUNE_FEATURES', 'mx32', '', 'rsvg', d)} \
 "
 
 PACKAGECONFIG[aom]             = "-Daom=enabled,-Daom=disabled,aom"
@@ -56,7 +58,6 @@ PACKAGECONFIG[gcrypt]          = "-Dhls-crypto=libgcrypt,,libgcrypt"
 PACKAGECONFIG[gl]              = "-Dgl=enabled,-Dgl=disabled,"
 PACKAGECONFIG[kms]             = "-Dkms=enabled,-Dkms=disabled,libdrm"
 PACKAGECONFIG[libde265]        = "-Dlibde265=enabled,-Dlibde265=disabled,libde265"
-PACKAGECONFIG[libmms]          = "-Dlibmms=enabled,-Dlibmms=disabled,libmms"
 PACKAGECONFIG[libssh2]         = "-Dcurl-ssh2=enabled,-Dcurl-ssh2=disabled,libssh2"
 PACKAGECONFIG[lcms2]           = "-Dcolormanagement=enabled,-Dcolormanagement=disabled,lcms"
 PACKAGECONFIG[modplug]         = "-Dmodplug=enabled,-Dmodplug=disabled,libmodplug"
@@ -92,10 +93,15 @@ PACKAGECONFIG[webp]            = "-Dwebp=enabled,-Dwebp=disabled,libwebp"
 PACKAGECONFIG[webrtc]          = "-Dwebrtc=enabled,-Dwebrtc=disabled,libnice"
 PACKAGECONFIG[webrtcdsp]       = "-Dwebrtcdsp=enabled,-Dwebrtcdsp=disabled,webrtc-audio-processing"
 PACKAGECONFIG[zbar]            = "-Dzbar=enabled,-Dzbar=disabled,zbar"
+PACKAGECONFIG[x11]             = "-Dx11=enabled,-Dx11=disabled,libxcb libxkbcommon"
 PACKAGECONFIG[x265]            = "-Dx265=enabled,-Dx265=disabled,x265"
+
+GSTREAMER_GPL = "${@bb.utils.filter('PACKAGECONFIG', 'faad resindvd x265', d)}"
 
 EXTRA_OEMESON += " \
     -Ddoc=disabled \
+    -Daes=enabled \
+    -Dcodecalpha=enabled \
     -Ddecklink=enabled \
     -Ddvb=enabled \
     -Dfbdev=enabled \
@@ -104,6 +110,7 @@ EXTRA_OEMESON += " \
     -Dtranscode=enabled \
     -Dandroidmedia=disabled \
     -Dapplemedia=disabled \
+    -Dasio=disabled \
     -Davtp=disabled \
     -Dbs2b=disabled \
     -Dchromaprint=disabled \
@@ -114,10 +121,12 @@ EXTRA_OEMESON += " \
     -Dfdkaac=disabled \
     -Dflite=disabled \
     -Dgme=disabled \
+    -Dgs=disabled \
     -Dgsm=disabled \
     -Diqa=disabled \
     -Dkate=disabled \
     -Dladspa=disabled \
+    -Dldac=disabled \
     -Dlv2=disabled \
     -Dmagicleap=disabled \
     -Dmediafoundation=disabled \
@@ -126,10 +135,12 @@ EXTRA_OEMESON += " \
     -Dmplex=disabled \
     -Dmusepack=disabled \
     -Dnvcodec=disabled \
-    -Dofa=disabled \
     -Dopenexr=disabled \
     -Dopenni2=disabled \
+    -Dopenaptx=disabled \
     -Dopensles=disabled \
+    -Donnx=disabled \
+    -Dqroverlay=disabled \
     -Dsoundtouch=disabled \
     -Dspandsp=disabled \
     -Dsvthevcenc=disabled \
@@ -145,10 +156,10 @@ EXTRA_OEMESON += " \
 
 export OPENCV_PREFIX = "${STAGING_DIR_TARGET}${prefix}"
 
-ARM_INSTRUCTION_SET_armv4 = "arm"
-ARM_INSTRUCTION_SET_armv5 = "arm"
+ARM_INSTRUCTION_SET:armv4 = "arm"
+ARM_INSTRUCTION_SET:armv5 = "arm"
 
-FILES_${PN}-freeverb += "${datadir}/gstreamer-1.0/presets/GstFreeverb.prs"
-FILES_${PN}-opencv += "${datadir}/gst-plugins-bad/1.0/opencv*"
-FILES_${PN}-transcode += "${datadir}/gstreamer-1.0/encoding-profiles"
-FILES_${PN}-voamrwbenc += "${datadir}/gstreamer-1.0/presets/GstVoAmrwbEnc.prs"
+FILES:${PN}-freeverb += "${datadir}/gstreamer-1.0/presets/GstFreeverb.prs"
+FILES:${PN}-opencv += "${datadir}/gst-plugins-bad/1.0/opencv*"
+FILES:${PN}-transcode += "${datadir}/gstreamer-1.0/encoding-profiles"
+FILES:${PN}-voamrwbenc += "${datadir}/gstreamer-1.0/presets/GstVoAmrwbEnc.prs"

@@ -3,14 +3,14 @@ DESCRIPTION = "Wraps available OpenMAX IL components and makes them available as
 HOMEPAGE = "http://gstreamer.freedesktop.org/"
 SECTION = "multimedia"
 
-LICENSE = "LGPLv2.1"
+LICENSE = "LGPL-2.1-or-later"
 LICENSE_FLAGS = "commercial"
 LIC_FILES_CHKSUM = "file://COPYING;md5=4fbd65380cdd255951079008b364516c \
                     file://omx/gstomx.h;beginline=1;endline=21;md5=5c8e1fca32704488e76d2ba9ddfa935f"
 
 SRC_URI = "https://gstreamer.freedesktop.org/src/gst-omx/gst-omx-${PV}.tar.xz"
 
-SRC_URI[sha256sum] = "e35051cf891eb2f31d6fcf176ff37d985f97f33874ac31b0b3ad3b5b95035043"
+SRC_URI[sha256sum] = "86b52e30ebd0f59fcb5cf81a163211975f73ef32e5a6782562804646316bcd7c"
 
 S = "${WORKDIR}/gst-omx-${PV}"
 
@@ -40,8 +40,8 @@ set_omx_core_name() {
 }
 do_install[postfuncs] += " set_omx_core_name "
 
-FILES_${PN} += "${libdir}/gstreamer-1.0/*.so"
-FILES_${PN}-staticdev += "${libdir}/gstreamer-1.0/*.a"
+FILES:${PN} += "${libdir}/gstreamer-1.0/*.so"
+FILES:${PN}-staticdev += "${libdir}/gstreamer-1.0/*.a"
 
 VIRTUAL-RUNTIME_libomxil ?= "libomxil"
-RDEPENDS_${PN} = "${VIRTUAL-RUNTIME_libomxil}"
+RDEPENDS:${PN} = "${VIRTUAL-RUNTIME_libomxil}"

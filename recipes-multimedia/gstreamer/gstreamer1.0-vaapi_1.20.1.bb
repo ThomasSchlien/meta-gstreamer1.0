@@ -6,12 +6,12 @@ based plugins for GStreamer and helper libraries: `vaapidecode', \
 
 REALPN = "gstreamer-vaapi"
 
-LICENSE = "LGPLv2.1+"
+LICENSE = "LGPL-2.1-or-later"
 LIC_FILES_CHKSUM = "file://COPYING.LIB;md5=4fbd65380cdd255951079008b364516c"
 
 SRC_URI = "https://gstreamer.freedesktop.org/src/${REALPN}/${REALPN}-${PV}.tar.xz"
 
-SRC_URI[sha256sum] = "92db98af86f3150d429c9ab17e88d2364f9c07a140c8f445ed739e8f10252aea"
+SRC_URI[sha256sum] = "87fbf6c537af9079c99a9aefe951da119e16e5bcc9cc8614f5035f062bf21137"
 
 S = "${WORKDIR}/${REALPN}-${PV}"
 DEPENDS = "libva gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad"
@@ -47,7 +47,7 @@ PACKAGECONFIG[glx] = "-Dwith_glx=yes,-Dwith_glx=no,virtual/libgl"
 PACKAGECONFIG[wayland] = "-Dwith_wayland=yes,-Dwith_wayland=no,wayland-native wayland wayland-protocols"
 PACKAGECONFIG[x11] = "-Dwith_x11=yes,-Dwith_x11=no,virtual/libx11 libxrandr libxrender"
 
-FILES_${PN} += "${libdir}/gstreamer-*/*.so"
-FILES_${PN}-dbg += "${libdir}/gstreamer-*/.debug"
-FILES_${PN}-dev += "${libdir}/gstreamer-*/*.a"
-FILES_${PN}-tests = "${bindir}/*"
+FILES:${PN} += "${libdir}/gstreamer-*/*.so"
+FILES:${PN}-dbg += "${libdir}/gstreamer-*/.debug"
+FILES:${PN}-dev += "${libdir}/gstreamer-*/*.a"
+FILES:${PN}-tests = "${bindir}/*"

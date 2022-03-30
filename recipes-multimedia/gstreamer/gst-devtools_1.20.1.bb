@@ -3,7 +3,7 @@ DESCRIPTION = "A Tool to test GStreamer components"
 HOMEPAGE = "https://gstreamer.freedesktop.org/documentation/gst-devtools/index.html"
 SECTION = "multimedia"
 
-LICENSE = "LGPLv2.1"
+LICENSE = "LGPL-2.1-or-later"
 LIC_FILES_CHKSUM = "file://validate/COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
 
 #S = "${WORKDIR}/gst-devtools-${PV}"
@@ -12,12 +12,12 @@ SRC_URI = "https://gstreamer.freedesktop.org/src/gst-devtools/gst-devtools-${PV}
            file://0001-connect-has-a-different-signature-on-musl.patch \
            "
 
-SRC_URI[sha256sum] = "ffbd194c40912cb5e7fca2863648bf9dd8257b7af97d3a60c4fcd4efd8526ccf"
+SRC_URI[sha256sum] = "81f1c7ef105b8bdb63412638952f6320723b3161c96a80f113b020e2de554b2b"
 
 DEPENDS = "json-glib glib-2.0 glib-2.0-native gstreamer1.0 gstreamer1.0-plugins-base"
-RRECOMMENDS_${PN} = "git"
+RRECOMMENDS:${PN} = "git"
 
-FILES_${PN} += "${datadir}/gstreamer-1.0/* ${libdir}/gst-validate-launcher/* ${libdir}/gstreamer-1.0/*"
+FILES:${PN} += "${datadir}/gstreamer-1.0/* ${libdir}/gst-validate-launcher/* ${libdir}/gstreamer-1.0/*"
 
 inherit meson pkgconfig gettext upstream-version-is-even gobject-introspection
 
@@ -30,6 +30,9 @@ def gettext_oemeson(d):
         return '-Dnls=disabled'
     return '-Dnls=enabled'
 
+# Build GstValidateVideo
+PACKAGECONFIG[cairo] = "-Dcairo=enabled,-Dcairo=disabled,cairo"
+
 EXTRA_OEMESON += " \
     -Ddoc=disabled \
     -Ddebug_viewer=disabled \
@@ -38,7 +41,7 @@ EXTRA_OEMESON += " \
     ${@gettext_oemeson(d)} \
 "
 
-do_install_append () {
+do_install:append () {
      for fn in ${bindir}/gst-validate-launcher \
          ${libdir}/gst-validate-launcher/python/launcher/config.py; do
              sed -i -e 's,${B},/usr/src/debug/${PN},g' -e 's,${S},/usr/src/debug/${PN},g' ${D}$fn
