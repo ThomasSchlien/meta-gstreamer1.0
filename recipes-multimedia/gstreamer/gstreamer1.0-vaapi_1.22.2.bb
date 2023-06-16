@@ -51,10 +51,3 @@ FILES:${PN} += "${libdir}/gstreamer-*/*.so"
 FILES:${PN}-dbg += "${libdir}/gstreamer-*/.debug"
 FILES:${PN}-dev += "${libdir}/gstreamer-*/*.a"
 FILES:${PN}-tests = "${bindir}/*"
-
-# correct .pc install location - fixed in upstream trunk
-do_install:append() {
-    mkdir -p ${D}/${libdir}/pkgconfig
-    mv ${D}/${libdir}/gstreamer-1.0/pkgconfig/*.pc ${D}/${libdir}/pkgconfig
-    rmdir ${D}/${libdir}/gstreamer-1.0/pkgconfig/
-}
