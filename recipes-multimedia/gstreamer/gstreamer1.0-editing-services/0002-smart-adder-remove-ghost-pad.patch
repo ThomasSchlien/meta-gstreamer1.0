@@ -1,0 +1,30 @@
+From b9d585cd9217024ef72556cbf15bbadfccd938b2 Mon Sep 17 00:00:00 2001
+From: Bernd Geiser <bg@ferncast.de>
+Date: Wed, 5 Jul 2023 15:56:23 +0200
+Subject: [PATCH] smart-adder: remove ghost pad
+
+---
+ ges/ges-smart-adder.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/ges/ges-smart-adder.c b/ges/ges-smart-adder.c
+index 85ea017..389bbe3 100644
+--- a/ges/ges-smart-adder.c
++++ b/ges/ges-smart-adder.c
+@@ -147,7 +147,12 @@ _release_pad (GstElement * element, GstPad * pad)
+   GST_DEBUG_OBJECT (element, "Releasing pad %" GST_PTR_FORMAT, pad);
+ 
+   LOCK (element);
+-  g_hash_table_remove (GES_SMART_ADDER (element)->pads_infos, pad);
++  GHashTable *ht = GES_SMART_ADDER (element)->pads_infos;
++  if (g_hash_table_contains (ht, pad)) {
++      PadInfos *infos = g_hash_table_lookup (ht, pad);
++      gst_element_remove_pad (GST_ELEMENT (infos->self), pad);
++      g_hash_table_remove (ht, pad);
++  }
+   UNLOCK (element);
+ }
+ 
+-- 
+2.39.2
+
