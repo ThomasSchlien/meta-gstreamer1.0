@@ -1,0 +1,42 @@
+From 4f0bfba0c2d597b9d41bb3dc31c5b6869ef97c51 Mon Sep 17 00:00:00 2001
+From: Bernd Geiser <bg@ferncast.de>
+Date: Mon, 10 Jul 2023 16:47:24 +0200
+Subject: [PATCH] nlecomposition: disable dot output
+
+---
+ plugins/nle/nlecomposition.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/plugins/nle/nlecomposition.c b/plugins/nle/nlecomposition.c
+index b3541ac..0c45699 100644
+--- a/plugins/nle/nlecomposition.c
++++ b/plugins/nle/nlecomposition.c
+@@ -2512,18 +2512,18 @@ _is_ready_to_restart_task (NleComposition * comp, GstEvent * event)
+ 
+ 
+   if (comp->priv->seqnum_to_restart_task == seqnum) {
+-    gchar *name = g_strdup_printf ("%s-new-stack__%" GST_TIME_FORMAT "--%"
+-        GST_TIME_FORMAT "", GST_OBJECT_NAME (comp),
+-        GST_TIME_ARGS (comp->priv->current_stack_start),
+-        GST_TIME_ARGS (comp->priv->current_stack_stop));
++    /* gchar *name = g_strdup_printf ("%s-new-stack__%" GST_TIME_FORMAT "--%" */
++    /*     GST_TIME_FORMAT "", GST_OBJECT_NAME (comp), */
++    /*     GST_TIME_ARGS (comp->priv->current_stack_start), */
++    /*     GST_TIME_ARGS (comp->priv->current_stack_stop)); */
+ 
+     GST_INFO_OBJECT (comp, "Got %s with proper seqnum"
+         " done with stack reconfiguration %" GST_PTR_FORMAT,
+         GST_EVENT_TYPE_NAME (event), event);
+ 
+-    GST_DEBUG_BIN_TO_DOT_FILE_WITH_TS (GST_BIN (comp),
+-        GST_DEBUG_GRAPH_SHOW_ALL, name);
+-    g_free (name);
++    /* GST_DEBUG_BIN_TO_DOT_FILE_WITH_TS (GST_BIN (comp), */
++    /*     GST_DEBUG_GRAPH_SHOW_ALL, name); */
++    /* g_free (name); */
+ 
+     if (GST_EVENT_TYPE (event) == GST_EVENT_EOS) {
+       GST_INFO_OBJECT (comp, "update_pipeline DONE");
+-- 
+2.39.2
+
