@@ -9,6 +9,7 @@ SRC_URI = "https://gstreamer.freedesktop.org/src/gst-editing-services/gst-editin
            file://0001-uri-asset-use-custom-context-for-running-discoverer.patch \
            file://0002-smart-adder-remove-ghost-pad.patch \
            file://0003-nlecomposition-disable-dot-output.patch \
+           file://0004-ges-uri-asset-disable-cached-discoverers.patch \
 "
 SRC_URI[sha256sum] = "453846cfa471a0c1c8014551bd484fbcf334f0e4430592317afbb23775e69bd2"
 
