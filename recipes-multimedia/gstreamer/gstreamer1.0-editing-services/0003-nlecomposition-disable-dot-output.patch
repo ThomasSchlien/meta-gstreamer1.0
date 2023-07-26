@@ -1,17 +1,17 @@
-From 4f0bfba0c2d597b9d41bb3dc31c5b6869ef97c51 Mon Sep 17 00:00:00 2001
+From d5972277c5052f05c806a76e47436230219868da Mon Sep 17 00:00:00 2001
 From: Bernd Geiser <bg@ferncast.de>
-Date: Mon, 10 Jul 2023 16:47:24 +0200
-Subject: [PATCH] nlecomposition: disable dot output
+Date: Wed, 26 Jul 2023 16:47:45 +0200
+Subject: [PATCH 3/4] nlecomposition-disable-dot-output
 
 ---
  plugins/nle/nlecomposition.c | 14 +++++++-------
  1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/plugins/nle/nlecomposition.c b/plugins/nle/nlecomposition.c
-index b3541ac..0c45699 100644
+index c1f7577..c0bb1c6 100644
 --- a/plugins/nle/nlecomposition.c
 +++ b/plugins/nle/nlecomposition.c
-@@ -2512,18 +2512,18 @@ _is_ready_to_restart_task (NleComposition * comp, GstEvent * event)
+@@ -2523,18 +2523,18 @@ _is_ready_to_restart_task (NleComposition * comp, GstEvent * event)
  
  
    if (comp->priv->seqnum_to_restart_task == seqnum) {

@@ -11,7 +11,7 @@ SRC_URI = "https://gstreamer.freedesktop.org/src/gst-editing-services/gst-editin
            file://0003-nlecomposition-disable-dot-output.patch \
            file://0004-ges-uri-asset-disable-cached-discoverers.patch \
 "
-SRC_URI[sha256sum] = "453846cfa471a0c1c8014551bd484fbcf334f0e4430592317afbb23775e69bd2"
+SRC_URI[sha256sum] = "bccdd3bd61d86829b16ce0e206db61b33f794ac1792423f9e7cc65d75d1a31b5"
 
 S = "${WORKDIR}/gst-editing-services-${PV}"
 

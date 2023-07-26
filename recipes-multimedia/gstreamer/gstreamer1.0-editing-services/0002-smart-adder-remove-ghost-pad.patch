@@ -1,7 +1,7 @@
-From b9d585cd9217024ef72556cbf15bbadfccd938b2 Mon Sep 17 00:00:00 2001
+From 74f33bcabc443da0dc06da2d067b00c236b9dd08 Mon Sep 17 00:00:00 2001
 From: Bernd Geiser <bg@ferncast.de>
-Date: Wed, 5 Jul 2023 15:56:23 +0200
-Subject: [PATCH] smart-adder: remove ghost pad
+Date: Wed, 26 Jul 2023 16:47:45 +0200
+Subject: [PATCH 2/4] smart-adder-remove-ghost-pad
 
 ---
  ges/ges-smart-adder.c | 7 ++++++-
