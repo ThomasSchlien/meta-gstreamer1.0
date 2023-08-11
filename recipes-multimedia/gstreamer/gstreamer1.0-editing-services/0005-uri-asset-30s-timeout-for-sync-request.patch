@@ -1,0 +1,54 @@
+From ccac665fab50c9c079d35c442edeb0c94c6fa77c Mon Sep 17 00:00:00 2001
+From: Bernd Geiser <bg@ferncast.de>
+Date: Fri, 11 Aug 2023 09:58:23 +0200
+Subject: [PATCH] uri-asset: 30s timeout for sync request
+
+---
+ ges/ges-uri-asset.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/ges/ges-uri-asset.c b/ges/ges-uri-asset.c
+index 446a1d1..43e7270 100644
+--- a/ges/ges-uri-asset.c
++++ b/ges/ges-uri-asset.c
+@@ -688,6 +688,16 @@ ges_uri_clip_asset_finish (GAsyncResult * res, GError ** error)
+   return NULL;
+ }
+ 
++static gboolean
++timeout_sync_request(gpointer user_data)
++{
++  RequestSyncData *data = (RequestSyncData*)user_data;
++  data->error = g_error_new (GST_RESOURCE_ERROR, GST_RESOURCE_ERROR_FAILED,
++                             "Timeout during sync request for URI asset");
++  g_main_loop_quit (data->ml);
++  return G_SOURCE_REMOVE;
++}
++
+ /**
+  * ges_uri_clip_asset_request_sync:
+  * @uri: The URI of the file for which to create a #GESUriClipAsset.
+@@ -708,6 +718,7 @@ ges_uri_clip_asset_request_sync (const gchar * uri, GError ** error)
+   RequestSyncData data = { 0, };
+     /* GstDiscoverer *previous_discoverer; */
+   GMainContext *ctx;
++  GSource *timeout_source;
+ 
+   asset = GES_URI_CLIP_ASSET (ges_asset_request (GES_TYPE_URI_CLIP, uri,
+           &lerror));
+@@ -723,7 +734,12 @@ ges_uri_clip_asset_request_sync (const gchar * uri, GError ** error)
+ 
+   ges_asset_request_async (GES_TYPE_URI_CLIP, uri, NULL,
+       (GAsyncReadyCallback) asset_ready_cb, &data);
++  timeout_source = g_timeout_source_new (30 * 1000);
++  g_source_set_callback (timeout_source, &timeout_sync_request, &data, NULL);
++  g_source_attach (timeout_source, ctx);
+   g_main_loop_run (data.ml);
++  g_source_destroy (timeout_source);
++  g_source_unref (timeout_source);
+   g_main_loop_unref (data.ml);
+   g_main_context_pop_thread_default (ctx);
+   g_main_context_unref (ctx);
+-- 
+2.39.2
+

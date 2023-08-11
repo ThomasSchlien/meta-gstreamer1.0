@@ -10,6 +10,7 @@ SRC_URI = "https://gstreamer.freedesktop.org/src/gst-editing-services/gst-editin
            file://0002-smart-adder-remove-ghost-pad.patch \
            file://0003-nlecomposition-disable-dot-output.patch \
            file://0004-ges-uri-asset-disable-cached-discoverers.patch \
+           file://0005-uri-asset-30s-timeout-for-sync-request.patch \
 "
 SRC_URI[sha256sum] = "bccdd3bd61d86829b16ce0e206db61b33f794ac1792423f9e7cc65d75d1a31b5"
 
