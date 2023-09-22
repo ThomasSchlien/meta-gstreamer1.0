@@ -1,7 +1,7 @@
-From 17bf86c9827d87e4f74d96d2760adca21068cd33 Mon Sep 17 00:00:00 2001
+From 83ee983d74825af5d223cd5af0a32e2c0dc72f6d Mon Sep 17 00:00:00 2001
 From: Bernd Geiser <bg@ferncast.de>
-Date: Wed, 26 Jul 2023 16:47:45 +0200
-Subject: [PATCH 4/4] ges-uri-asset-disable-cached-discoverers
+Date: Fri, 22 Sep 2023 16:11:05 +0200
+Subject: [PATCH 4/6] ges-uri-asset-disable-cached-discoverers
 
 ---
  ges/ges-uri-asset.c | 19 ++++++++++++-------

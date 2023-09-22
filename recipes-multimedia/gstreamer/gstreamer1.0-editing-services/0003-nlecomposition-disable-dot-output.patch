@@ -1,7 +1,7 @@
-From d5972277c5052f05c806a76e47436230219868da Mon Sep 17 00:00:00 2001
+From 4a1565d7c0f6172308c23f2c0bcdb5dae556b9a6 Mon Sep 17 00:00:00 2001
 From: Bernd Geiser <bg@ferncast.de>
-Date: Wed, 26 Jul 2023 16:47:45 +0200
-Subject: [PATCH 3/4] nlecomposition-disable-dot-output
+Date: Fri, 22 Sep 2023 16:11:05 +0200
+Subject: [PATCH 3/6] nlecomposition-disable-dot-output
 
 ---
  plugins/nle/nlecomposition.c | 14 +++++++-------

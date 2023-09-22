@@ -1,7 +1,7 @@
-From ee67b54dcce48b664b74d1f5d1bcd9c707dc7918 Mon Sep 17 00:00:00 2001
+From 2523455341d41a36b78d54e8a407eb508eb306b5 Mon Sep 17 00:00:00 2001
 From: Bernd Geiser <bg@ferncast.de>
-Date: Fri, 18 Aug 2023 13:36:38 +0200
-Subject: [PATCH] ges asset and timeline: cleanup functions
+Date: Fri, 22 Sep 2023 16:11:05 +0200
+Subject: [PATCH 6/6] ges-asset-and-timeline-cleanup-functions
 
 ---
  ges/ges-asset.c    | 25 +++++++++++++++++++++++++

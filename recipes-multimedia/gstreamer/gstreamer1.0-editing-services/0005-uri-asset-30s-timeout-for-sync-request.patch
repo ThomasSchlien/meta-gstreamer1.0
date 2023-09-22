@@ -1,7 +1,7 @@
-From ccac665fab50c9c079d35c442edeb0c94c6fa77c Mon Sep 17 00:00:00 2001
+From 2d7a9b4a8e9839abebfdeb63e33158d7cd57d20d Mon Sep 17 00:00:00 2001
 From: Bernd Geiser <bg@ferncast.de>
-Date: Fri, 11 Aug 2023 09:58:23 +0200
-Subject: [PATCH] uri-asset: 30s timeout for sync request
+Date: Fri, 22 Sep 2023 16:11:05 +0200
+Subject: [PATCH 5/6] uri-asset-30s-timeout-for-sync-request
 
 ---
  ges/ges-uri-asset.c | 16 ++++++++++++++++

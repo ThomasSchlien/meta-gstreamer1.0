@@ -1,7 +1,7 @@
-From bb987f8db35b5b84b6d833f073febdbda066dace Mon Sep 17 00:00:00 2001
+From 9dce2a1bee7ec00bca504302359f13e80821e932 Mon Sep 17 00:00:00 2001
 From: Bernd Geiser <bg@ferncast.de>
-Date: Wed, 26 Jul 2023 16:47:45 +0200
-Subject: [PATCH 1/4] uri-asset-use-custom-context-for-running-discoverer
+Date: Fri, 22 Sep 2023 16:11:05 +0200
+Subject: [PATCH 1/6] uri-asset-use-custom-context-for-running-discoverer
 
 ---
  ges/ges-uri-asset.c | 7 ++++++-
