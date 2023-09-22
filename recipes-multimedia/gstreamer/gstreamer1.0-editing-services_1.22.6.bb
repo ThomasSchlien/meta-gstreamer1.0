@@ -13,7 +13,7 @@ SRC_URI = "https://gstreamer.freedesktop.org/src/gst-editing-services/gst-editin
            file://0005-uri-asset-30s-timeout-for-sync-request.patch \
            file://0006-ges-asset-and-timeline-cleanup-functions.patch \
 "
-SRC_URI[sha256sum] = "bccdd3bd61d86829b16ce0e206db61b33f794ac1792423f9e7cc65d75d1a31b5"
+SRC_URI[sha256sum] = "748d423672c597f876e130804fb984848f5b4b89efd78a506cb17f7646795301"
 
 S = "${WORKDIR}/gst-editing-services-${PV}"
 
