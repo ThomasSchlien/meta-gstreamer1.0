@@ -35,6 +35,9 @@ FILES:${PN} += " \
   ${datadir}/bash-completion/completions/ges-launch-1.0 \
   ${libdir}/gstreamer-1.0/libgstnle.so \
   ${libdir}/gstreamer-1.0/libgstges.so \
-  ${libdir}/gst-validate-launcher/python/launcher/apps/geslaunch.py \
-  ${libdir}/python3.11/site-packages/gi/overrides/GES.py \
+  ${libdir}/gst-validate-launcher \
 "
+do_install:append() {
+  rm -rf ${D}${libdir}/python3.11
+  rm -rf ${D}${libdir}/gst-validate-launcher/python
+}
