@@ -19,10 +19,10 @@ SRC_URI = "https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-${PV}.tar.x
            file://run-ptest \
            file://0001-tests-respect-the-idententaion-used-in-meson.patch \
            file://0002-tests-add-support-for-install-the-tests.patch \
-           file://0003-tests-use-a-dictionaries-for-environment.patch;striplevel=3 \
-           file://0004-tests-add-helper-script-to-run-the-installed_tests.patch;striplevel=3 \
+           file://0003-tests-use-a-dictionaries-for-environment.patch \
+           file://0004-tests-add-helper-script-to-run-the-installed_tests.patch \
            "
-SRC_URI[sha256sum] = "f500e6cfddff55908f937711fc26a0840de28a1e9ec49621c0b6f1adbd8f818e"
+SRC_URI[sha256sum] = "3d16259e9dab8b002c57ce208a09b350d8282f5b0197306c0cdba9a0d0799744"
 
 PACKAGECONFIG ??= "${@bb.utils.contains('PTEST_ENABLED', '1', 'tests', '', d)} \
                    check \
