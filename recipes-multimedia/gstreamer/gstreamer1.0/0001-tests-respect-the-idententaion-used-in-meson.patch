@@ -15,7 +15,7 @@ diff --git a/tests/check/meson.build b/tests/check/meson.build
 index 9787b0a..16caac7 100644
 --- a/tests/check/meson.build
 +++ b/tests/check/meson.build
-@@ -145,11 +145,11 @@ foreach t : core_tests
+@@ -146,11 +146,11 @@ foreach t : core_tests
  
    if not skip_test
      exe = executable(test_name, fname,

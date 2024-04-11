@@ -1,0 +1,24 @@
+From 559e1dd850b2b9eb3a415aa43e932e5e48f605cd Mon Sep 17 00:00:00 2001
+From: Thomas Schlien <ts@ferncast.de>
+Date: Thu, 11 Apr 2024 18:30:00 +0200
+Subject: [PATCH] PTP helper: Patch Panic Abort to Unwind
+
+Upstream-Status: Pending
+
+---
+ libs/gst/helpers/ptp/meson.build | 2 +-
+ 1 file changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/libs/gst/helpers/ptp/meson.build b/libs/gst/helpers/ptp/meson.build
+index 9787b0a..16caac7 100644
+--- a/libs/gst/helpers/ptp/meson.build
++++ b/libs/gst/helpers/ptp/meson.build
+@@ -102,7 +102,7 @@
+ 
+ exe = executable('gst-ptp-helper', 'main.rs',
+   override_options : ['rust_std=2018'],
+-  rust_args : ['-Cpanic=abort', rust_args],
++  rust_args : ['-Cpanic=unwind', rust_args],
+   dependencies : [cap_dep],
+   link_with : conf,
+   install_dir : helpers_install_dir,

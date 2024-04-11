@@ -22,7 +22,7 @@ diff --git a/tests/check/meson.build b/tests/check/meson.build
 index 50dff7f..2b9e979 100644
 --- a/tests/check/meson.build
 +++ b/tests/check/meson.build
-@@ -184,6 +184,23 @@ foreach t : core_tests
+@@ -185,6 +185,23 @@ foreach t : core_tests
          install_dir: installed_tests_metadir,
          configuration: test_conf
        )

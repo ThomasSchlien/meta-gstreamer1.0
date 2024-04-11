@@ -21,8 +21,9 @@ SRC_URI = "https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-${PV}.tar.x
            file://0002-tests-add-support-for-install-the-tests.patch \
            file://0003-tests-use-a-dictionaries-for-environment.patch \
            file://0004-tests-add-helper-script-to-run-the-installed_tests.patch \
+           file://0005-gst-ptp-help-patch-panic-abort-to-unwind.patch \
            "
-SRC_URI[sha256sum] = "3d16259e9dab8b002c57ce208a09b350d8282f5b0197306c0cdba9a0d0799744"
+SRC_URI[sha256sum] = "9cafdd23bd180f1681c56cd3a6879a8497ccf24da6f422a6b6f356fa074a8481"
 
 PACKAGECONFIG ??= "${@bb.utils.contains('PTEST_ENABLED', '1', 'tests', '', d)} \
                    check \
@@ -38,7 +39,12 @@ PACKAGECONFIG[unwind] = "-Dlibunwind=enabled,-Dlibunwind=disabled,libunwind"
 PACKAGECONFIG[dw] = "-Dlibdw=enabled,-Dlibdw=disabled,elfutils"
 PACKAGECONFIG[bash-completion] = "-Dbash-completion=enabled,-Dbash-completion=disabled,bash-completion"
 PACKAGECONFIG[tools] = "-Dtools=enabled,-Dtools=disabled"
+PACKAGECONFIG[ptp-helper] = "-Dptp-helper=enabled,-Dptp-helper=disabled,rust-native"
 PACKAGECONFIG[setcap] = "-Dptp-helper-permissions=capabilities,,libcap libcap-native"
+
+# Necessary for building ptp-helper
+inherit rust
+TARGET_CC_ARCH += "${LDFLAGS}"
 
 # TODO: put this in a gettext.bbclass patch
 def gettext_oemeson(d):

@@ -5,10 +5,9 @@ HOMEPAGE = "https://gstreamer.freedesktop.org/"
 BUGTRACKER = "https://gitlab.freedesktop.org/gstreamer/gst-plugins-good/-/issues"
 
 SRC_URI = "https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${PV}.tar.xz \
-           file://0001-qt-include-ext-qt-gstqtgl.h-instead-of-gst-gl-gstglf.patch \
-           file://0001-v4l2-Define-ioctl_req_t-for-posix-linux-case.patch"
+           file://0001-qt-include-ext-qt-gstqtgl.h-instead-of-gst-gl-gstglf.patch"
 
-SRC_URI[sha256sum] = "6ddd032381827d31820540735f0004b429436b0bdac19aaeab44fa22faad52e2"
+SRC_URI[sha256sum] = "6e347c72d4b8b2886d890ffe9f6767a9edb02f201588e8c3a572dcd08d9852bd"
 
 S = "${WORKDIR}/gst-plugins-good-${PV}"
 
@@ -37,6 +36,8 @@ X11DISABLEOPTS = "-Dximagesrc=disabled -Dximagesrc-xshm=disabled -Dximagesrc-xfi
 
 QT5WAYLANDDEPENDS = "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "qtwayland", "", d)}"
 
+PACKAGECONFIG[amrnb]      = "-Damrnb=enabled,-Damrnb=disabled,opencore-amr"
+PACKAGECONFIG[amrwb]      = "-Damrwbdec=enabled,-Damrwbdec=disabled,opencore-amr"
 PACKAGECONFIG[asm]        = "-Dasm=enabled,-Dasm=disabled,nasm-native"
 PACKAGECONFIG[bz2]        = "-Dbz2=enabled,-Dbz2=disabled,bzip2"
 PACKAGECONFIG[cairo]      = "-Dcairo=enabled,-Dcairo=disabled,cairo"
@@ -78,4 +79,5 @@ EXTRA_OEMESON += " \
     -Dwaveform=disabled \
 "
 
+FILES:${PN}-amrnb += "${datadir}/gstreamer-1.0/presets/GstAmrnbEnc.prs"
 FILES:${PN}-equalizer += "${datadir}/gstreamer-1.0/presets/*.prs"
