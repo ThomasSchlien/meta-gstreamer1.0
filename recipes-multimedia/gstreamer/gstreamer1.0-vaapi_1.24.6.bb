@@ -4,16 +4,16 @@ DESCRIPTION = "gstreamer-vaapi consists of a collection of VA-API \
 based plugins for GStreamer and helper libraries: `vaapidecode', \
 `vaapiconvert', and `vaapisink'."
 
-REALPN = "gstreamer-vaapi"
+PNREAL = "gstreamer-vaapi"
 
 LICENSE = "LGPL-2.1-or-later"
 LIC_FILES_CHKSUM = "file://COPYING.LIB;md5=4fbd65380cdd255951079008b364516c"
 
-SRC_URI = "https://gstreamer.freedesktop.org/src/${REALPN}/${REALPN}-${PV}.tar.xz"
+SRC_URI = "https://gstreamer.freedesktop.org/src/${PNREAL}/${PNREAL}-${PV}.tar.xz"
 
 SRC_URI[sha256sum] = "b5caa057e7efc51cd70504a59e5d9c7a5406d8268723c8283dd61be27fd8cacc"
 
-S = "${WORKDIR}/${REALPN}-${PV}"
+S = "${WORKDIR}/${PNREAL}-${PV}"
 DEPENDS = "libva gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad"
 
 inherit meson pkgconfig features_check upstream-version-is-even
