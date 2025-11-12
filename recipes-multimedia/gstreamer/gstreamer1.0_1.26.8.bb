@@ -23,7 +23,7 @@ SRC_URI = "https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-${PV}.tar.x
            file://0004-tests-add-helper-script-to-run-the-installed_tests.patch \
            file://0005-gst-ptp-help-patch-panic-abort-to-unwind.patch \
            "
-SRC_URI[sha256sum] = "18a5e214114dc501407697dd458514bba62cadd5414c60f793cf70141a4d0bb3"
+SRC_URI[sha256sum] = "2348e837464c3cb7423b79fc1cc8c4c994c74603443bd97d14edc6cd5ca7db13"
 
 PACKAGECONFIG ??= "${@bb.utils.contains('PTEST_ENABLED', '1', 'tests', '', d)} \
                    check \
