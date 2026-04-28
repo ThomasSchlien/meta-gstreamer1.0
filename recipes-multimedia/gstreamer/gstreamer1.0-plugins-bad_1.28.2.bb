@@ -10,7 +10,7 @@ SRC_URI = "https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad
            file://0002-avoid-including-sys-poll.h-directly.patch \
            file://0004-opencv-resolve-missing-opencv-data-dir-in-yocto-buil.patch \
            "
-SRC_URI[sha256sum] = "25c05be5eb0694bde3ecd3317516f5d0d6e4ad21125a5ebcf6fb644a4c92439f"
+SRC_URI[sha256sum] = "6467e3964828f4d7d08bfe1fbb4d76287a1c8fa76674e59e101a149c020fefd7"
 
 S = "${UNPACKDIR}/gst-plugins-bad-${PV}"
 
@@ -38,7 +38,7 @@ PACKAGECONFIG[assrender]       = "-Dassrender=enabled,-Dassrender=disabled,libas
 PACKAGECONFIG[avtp]            = "-Davtp=enabled,-Davtp=disabled,libavtp"
 PACKAGECONFIG[bluez]           = "-Dbluez=enabled,-Dbluez=disabled,bluez5"
 PACKAGECONFIG[bz2]             = "-Dbz2=enabled,-Dbz2=disabled,bzip2"
-PACKAGECONFIG[closedcaption]   = "-Dclosedcaption=enabled,-Dclosedcaption=disabled,pango cairo"
+PACKAGECONFIG[closedcaption]   = "-Dclosedcaption=enabled,-Dclosedcaption=disabled,"
 PACKAGECONFIG[curl]            = "-Dcurl=enabled,-Dcurl=disabled,curl"
 PACKAGECONFIG[dash]            = "-Ddash=enabled,-Ddash=disabled,libxml2"
 PACKAGECONFIG[dc1394]          = "-Ddc1394=enabled,-Ddc1394=disabled,libdc1394"
@@ -46,6 +46,7 @@ PACKAGECONFIG[directfb]        = "-Ddirectfb=enabled,-Ddirectfb=disabled,directf
 PACKAGECONFIG[dtls]            = "-Ddtls=enabled,-Ddtls=disabled,openssl"
 PACKAGECONFIG[faac]            = "-Dfaac=enabled,-Dfaac=disabled,faac"
 PACKAGECONFIG[faad]            = "-Dfaad=enabled,-Dfaad=disabled,faad2"
+PACKAGECONFIG[fdkaac]          = "-Dfdkaac=enabled,-Dfdkaac=disabled,fdk-aac"
 PACKAGECONFIG[fluidsynth]      = "-Dfluidsynth=enabled,-Dfluidsynth=disabled,fluidsynth"
 PACKAGECONFIG[gtk3]            = "-Dgtk3=enabled,-Dgtk3=disabled,gtk3+"
 PACKAGECONFIG[hls]             = "-Dhls=enabled,-Dhls=disabled,"
@@ -120,11 +121,11 @@ EXTRA_OEMESON += " \
     -Dd3d11=disabled \
     -Ddirectsound=disabled \
     -Ddts=disabled \
-    -Dfdkaac=disabled \
     -Dflite=disabled \
     -Dgme=disabled \
     -Dgs=disabled \
     -Dgsm=disabled \
+    -Dhip=disabled \
     -Diqa=disabled \
     -Dladspa=disabled \
     -Dldac=disabled \
@@ -133,6 +134,7 @@ EXTRA_OEMESON += " \
     -Dmediafoundation=disabled \
     -Dmicrodns=disabled \
     -Dmpeg2enc=disabled \
+    -Dmpeghdec=disabled \
     -Dmplex=disabled \
     -Dmusepack=disabled \
     -Dnvcodec=disabled \
@@ -146,12 +148,17 @@ EXTRA_OEMESON += " \
     -Dspandsp=disabled \
     -Dsvthevcenc=disabled \
     -Dteletext=disabled \
+    -Dtflite=disabled \
+    -Dtflite-edgetpu=disabled \
+    -Dtflite-vsi=disabled \
+    -Dvmaf=disabled \
     -Dwasapi=disabled \
     -Dwasapi2=disabled \
     -Dwildmidi=disabled \
     -Dwinks=disabled \
     -Dwinscreencap=disabled \
     -Dwpe=disabled \
+    -Dwpe2=disabled \
     -Dzxing=disabled \
     -Dlcevcdecoder=disabled \
     -Dlcevcencoder=disabled \
