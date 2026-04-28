@@ -6,7 +6,7 @@ BUGTRACKER = "https://gitlab.freedesktop.org/gstreamer/gst-plugins-good/-/issues
 
 SRC_URI = "https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${PV}.tar.xz"
 
-SRC_URI[sha256sum] = "061e84efae31dfb4d96e4517659aca82bad9d5625b8f64d3290604385edd1d14"
+SRC_URI[sha256sum] = "1ace2d8ec74f632d82eab5006753a27fe0c2402db4ca94d63271e494b62f50bf"
 
 S = "${UNPACKDIR}/gst-plugins-good-${PV}"
 
@@ -19,11 +19,9 @@ RPROVIDES:${PN}-pulseaudio += "${PN}-pulse"
 RPROVIDES:${PN}-soup += "${PN}-souphttpsrc"
 RDEPENDS:${PN}-soup += "${MLPREFIX}${@bb.utils.contains('PACKAGECONFIG', 'soup2', 'libsoup-2.4', 'libsoup', d)}"
 
-PACKAGECONFIG_SOUP ?= "soup3"
-
 PACKAGECONFIG ??= " \
     ${GSTREAMER_ORC} \
-    ${PACKAGECONFIG_SOUP} \
+    soup3 \
     ${@bb.utils.filter('DISTRO_FEATURES', 'pulseaudio x11', d)} \
     ${@bb.utils.contains('TUNE_FEATURES', 'm64', 'asm', '', d)} \
     bz2 cairo flac gdk-pixbuf gudev jpeg lame libpng mpg123 speex taglib v4l2 \
@@ -34,6 +32,7 @@ X11ENABLEOPTS = "-Dximagesrc=enabled -Dximagesrc-xshm=enabled -Dximagesrc-xfixes
 X11DISABLEOPTS = "-Dximagesrc=disabled -Dximagesrc-xshm=disabled -Dximagesrc-xfixes=disabled -Dximagesrc-xdamage=disabled"
 
 QT5WAYLANDDEPENDS = "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "qtwayland", "", d)}"
+QT6WAYLANDDEPENDS = "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "qtwayland", "", d)}"
 
 PACKAGECONFIG[amrnb]      = "-Damrnb=enabled,-Damrnb=disabled,opencore-amr"
 PACKAGECONFIG[amrwb]      = "-Damrwbdec=enabled,-Damrwbdec=disabled,opencore-amr"
@@ -53,8 +52,8 @@ PACKAGECONFIG[libv4l2]    = "-Dv4l2-libv4l2=enabled,-Dv4l2-libv4l2=disabled,v4l-
 PACKAGECONFIG[mpg123]     = "-Dmpg123=enabled,-Dmpg123=disabled,mpg123"
 PACKAGECONFIG[pulseaudio] = "-Dpulse=enabled,-Dpulse=disabled,pulseaudio"
 PACKAGECONFIG[qt5]        = "-Dqt5=enabled,-Dqt5=disabled,qtbase qtdeclarative qtbase-native qttools-native ${QT5WAYLANDDEPENDS}"
-PACKAGECONFIG[soup2]      = "-Dsoup=enabled,,libsoup-2.4,,,soup3"
-PACKAGECONFIG[soup3]      = "-Dsoup=enabled,,libsoup,,,soup2"
+PACKAGECONFIG[qt6]        = "-Dqt6=enabled,-Dqt6=disabled,qtbase qtdeclarative qtbase-native qttools-native ${QT6WAYLANDDEPENDS}"
+PACKAGECONFIG[soup3]      = "-Dsoup=enabled,-Dsoup=disabled,libsoup"
 PACKAGECONFIG[speex]      = "-Dspeex=enabled,-Dspeex=disabled,speex"
 PACKAGECONFIG[rpi]        = "-Drpicamsrc=enabled,-Drpicamsrc=disabled,userland"
 PACKAGECONFIG[taglib]     = "-Dtaglib=enabled,-Dtaglib=disabled,taglib"
