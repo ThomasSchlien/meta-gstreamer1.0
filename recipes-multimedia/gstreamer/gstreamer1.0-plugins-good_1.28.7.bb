@@ -6,7 +6,7 @@ BUGTRACKER = "https://gitlab.freedesktop.org/gstreamer/gst-plugins-good/-/issues
 
 SRC_URI = "https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${PV}.tar.xz"
 
-SRC_URI[sha256sum] = "c825ea737c59cea0e4a0c41da2388045ff5dd32d162220ac93a7a82ee4a04e61"
+SRC_URI[sha256sum] = "87256969c82cf3bc8574301f3e7044a90de0ac500a5a27d8ba38c4dde894dd8b"
 
 S = "${UNPACKDIR}/gst-plugins-good-${PV}"
 
