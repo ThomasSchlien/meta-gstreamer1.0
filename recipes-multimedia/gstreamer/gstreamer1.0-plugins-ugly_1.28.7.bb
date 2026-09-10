@@ -14,7 +14,7 @@ LICENSE_FLAGS = "commercial"
 SRC_URI = " \
             https://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-${PV}.tar.xz \
             "
-SRC_URI[sha256sum] = ""
+SRC_URI[sha256sum] = "2b681170ddc22b6b283cafeed48f427c30a17056974a6a9ed137c354e0f7730c"
 
 S = "${UNPACKDIR}/gst-plugins-ugly-${PV}"
 
