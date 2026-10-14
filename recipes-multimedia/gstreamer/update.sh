@@ -4,7 +4,7 @@ if [ $# -ne 1 ]; then
    echo "   eg: ./update.sh 1.24.8"
    exit
 fi
-CURRENT="$(basename $(ls gstreamer1.0_*.bb) .bb | cut -f 2 -d '_')"
+CURRENT="$(basename $(ls gstreamer1.0_*.bb | tail -n1) .bb | cut -f 2 -d '_')"
 echo "$CURRENT -> $1"
 read -p "Are you sure? " -n 1 -r
 echo    # (optional) move to a new line
